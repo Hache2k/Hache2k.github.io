@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olimpiadas PERU</title>
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Estilos -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ====== NAVEGACIÓN ====== -->
+<nav>
+  <a href="#" class="nav-logo">OLIMPIADAS <span>PERU</span></a>
+  <ul class="nav-links">
+    <li><a href="#deportes">Deportes</a></li>
+    <li><a href="#inscripcion">Inscripción</a></li>
+    <li><a href="#resultados">Resultados</a></li>
+    <li><a href="#cronograma">Cronograma</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="#inscripcion" class="nav-cta">Inscribirse</a>
+</nav>
+
+<!-- ====== HERO ====== -->
+<header class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-rings" aria-hidden="true">
+    <svg viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="300" cy="300" r="280" stroke="white" stroke-width="1"/>
+      <circle cx="300" cy="300" r="200" stroke="white" stroke-width="1"/>
+      <circle cx="300" cy="300" r="120" stroke="white" stroke-width="1"/>
+      <circle cx="300" cy="300" r="50"  stroke="white" stroke-width="1"/>
+      <circle cx="200" cy="340" r="60"  stroke="white" stroke-width="2"/>
+      <circle cx="280" cy="340" r="60"  stroke="white" stroke-width="2"/>
+      <circle cx="360" cy="340" r="60"  stroke="white" stroke-width="2"/>
+    </svg>
+  </div>
+
+  <div class="hero-tag"> Plataforma Oficial de Gestión</div>
+  <h1 class="hero-title">
+    Olimpiadas<span>PERU</span><em>2026</em>
+  </h1>
+  <p class="hero-sub">
+    Sistema integral para la gestión de olimpiadas institucionales. Registra equipos, organiza sorteos,
+    programa encuentros y lleva el control estadístico de todos los deportes en tiempo real.
+  </p>
+  <div class="hero-actions">
+    <a href="#inscripcion" class="btn-primary">Inscribir Institución</a>
+    <a href="#resultados"  class="btn-outline">Ver Resultados</a>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-num">12+</div><div class="stat-label">Instituciones</div></div>
+    <div><div class="stat-num">4</div><div class="stat-label">Deportes</div></div>
+    <div><div class="stat-num">48+</div><div class="stat-label">Equipos</div></div>
+    <div><div class="stat-num">200+</div><div class="stat-label">Participantes</div></div>
+  </div>
+</header>
+
+<!-- ====== DEPORTES ====== -->
+<section id="deportes">
+  <div class="deportes-header">
+    <div class="section-tag">◆ Disciplinas</div>
+    <h2 class="section-title">Deportes Oficiales</h2>
+    <p class="section-desc">Cuatro disciplinas obligatorias que conforman las Olimpiadas PERU. Cada institución puede inscribir equipos en uno o más deportes.</p>
+  </div>
+  <div class="deportes-grid">
+    <div class="deporte-card">
+      <span class="deporte-icon"></span>
+      <div class="deporte-name">Fútbol</div>
+      <div class="deporte-cat">Varones</div>
+      <p class="deporte-desc">11 jugadores por equipo. Sistema de series con sorteo aleatorio, fase de grupos y eliminatorias directas.</p>
+      <span class="deporte-badge">Obligatorio</span>
+    </div>
+    <div class="deporte-card">
+      <span class="deporte-icon"></span>
+      <div class="deporte-name">Básquet</div>
+      <div class="deporte-cat">Varones</div>
+      <p class="deporte-desc">5 jugadores titulares. Se lleva control de encestadores, asistencias y estadísticas por partido.</p>
+      <span class="deporte-badge">Obligatorio</span>
+    </div>
+    <div class="deporte-card">
+      <span class="deporte-icon"></span>
+      <div class="deporte-name">Vóley</div>
+      <div class="deporte-cat">Damas</div>
+      <p class="deporte-desc">6 jugadoras por equipo. Control de sets ganados, puntos y rotaciones durante la competencia.</p>
+      <span class="deporte-badge">Obligatorio</span>
+    </div>
+    <div class="deporte-card">
+      <span class="deporte-icon"></span>
+      <div class="deporte-name">Ping Pong</div>
+      <div class="deporte-cat">Mixto</div>
+      <p class="deporte-desc">Modalidad mixta individual y por parejas. Bracket eliminatorio con registro de puntuación por set.</p>
+      <span class="deporte-badge">Obligatorio</span>
+    </div>
+  </div>
+</section>
+
+<!-- ====== INSCRIPCIÓN ====== -->
+<section id="inscripcion">
+  <div class="section-tag">◆ Registro</div>
+  <h2 class="section-title">Inscripción de Equipos</h2>
+  <p class="section-desc">Registra tu institución y selecciona los deportes en los que participarás. El proceso es rápido y sencillo.</p>
+
+  <div class="form-layout">
+    <!-- Formulario -->
+    <div class="form-box">
+      <h3>Datos del Equipo</h3>
+      <p>Complete el formulario para registrar su institución en las olimpiadas.</p>
+
+      <div class="form-group">
+        <label>Nombre de la Institución *</label>
+        <input type="text" placeholder="Ej. Universidad Nacional Mayor de San Marcos">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Año / Categoría *</label>
+          <select>
+            <option value="">Seleccionar…</option>
+            <option>Primer Año — 🇧🇷 Brasil</option>
+            <option>Segundo Año — 🇦🇷 Argentina</option>
+            <option>Tercer Año — 🇨🇱 Chile</option>
+            <option>Cuarto Año — 🇺🇾 Uruguay</option>
+            <option>Quinto Año — 🇫🇷 Francia</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Número de Participantes *</label>
+          <input type="number" placeholder="Ej. 25" min="1">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Nombre del Representante *</label>
+        <input type="text" placeholder="Nombre completo">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Correo Electrónico *</label>
+          <input type="email" placeholder="correo@institución.edu.pe">
+        </div>
+        <div class="form-group">
+          <label>Teléfono de Contacto</label>
+          <input type="tel" placeholder="+51 9XX XXX XXX">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Deportes a Inscribir *</label>
+        <div class="checkbox-group">
+          <label class="checkbox-item"><input type="checkbox" checked><span> Fútbol Varones</span></label>
+          <label class="checkbox-item"><input type="checkbox"><span> Básquet Varones</span></label>
+          <label class="checkbox-item"><input type="checkbox"><span> Vóley Damas</span></label>
+          <label class="checkbox-item"><input type="checkbox"><span> Ping Pong Mixto</span></label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Observaciones adicionales</label>
+        <textarea placeholder="Información adicional, condiciones especiales, etc."></textarea>
+      </div>
+      <button class="form-submit" onclick="handleSubmit()">Enviar Inscripción →</button>
+    </div>
+
+    <!-- Pasos del proceso -->
+    <div>
+      <ul class="info-steps">
+        <li class="info-step">
+          <div class="step-num">01</div>
+          <div class="step-text">
+            <h4>Registro de la Institución</h4>
+            <p>Completa los datos de tu institución y el representante responsable del equipo.</p>
+          </div>
+        </li>
+        <li class="info-step">
+          <div class="step-num">02</div>
+          <div class="step-text">
+            <h4>Selección de Deportes</h4>
+            <p>Elige los deportes en los que participará tu equipo. Puedes inscribirte en uno o más.</p>
+          </div>
+        </li>
+        <li class="info-step">
+          <div class="step-num">03</div>
+          <div class="step-text">
+            <h4>Sorteo de Series</h4>
+            <p>Una vez cerradas las inscripciones, se realiza el sorteo aleatorio para definir los grupos por deporte.</p>
+          </div>
+        </li>
+        <li class="info-step">
+          <div class="step-num">04</div>
+          <div class="step-text">
+            <h4>Programación de Encuentros</h4>
+            <p>Se asigna fecha, hora y lugar para cada contienda según el calendario oficial del evento.</p>
+          </div>
+        </li>
+        <li class="info-step">
+          <div class="step-num">05</div>
+          <div class="step-text">
+            <h4>Seguimiento y Estadísticas</h4>
+            <p>Accede en tiempo real a los resultados, tabla de posiciones, goleadores y estadísticas del torneo.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ====== RESULTADOS ====== -->
+<section id="resultados">
+  <div class="results-header">
+    <div>
+      <div class="section-tag">◆ Tabla de posiciones</div>
+      <h2 class="section-title">Resultados</h2>
+    </div>
+    <div class="filter-tabs">
+      <button class="tab active" onclick="filterTab(this)"> Fútbol</button>
+      <button class="tab" onclick="filterTab(this)"> Básquet</button>
+      <button class="tab" onclick="filterTab(this)"> Vóley</button>
+      <button class="tab" onclick="filterTab(this)"> Ping Pong</button>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th><th>Equipo / País</th><th>PJ</th><th>PG</th><th>PE</th>
+        <th>PP</th><th>GF</th><th>GC</th><th>DIF</th><th>PTS</th><th>Último</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="rank-num rank-1">1</span></td>
+        <td><div class="team-country"><div class="country-dot">🇧🇷</div><div><div class="team-name">Primer Año</div><div class="team-sub">Brasil</div></div></div></td>
+        <td>6</td><td>5</td><td>0</td><td>1</td><td>14</td><td>5</td><td>+9</td>
+        <td><span class="pts">15</span></td><td><span class="status-ganó">GANÓ</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank-num rank-2">2</span></td>
+        <td><div class="team-country"><div class="country-dot">🇫🇷</div><div><div class="team-name">Quinto Año</div><div class="team-sub">Francia</div></div></div></td>
+        <td>6</td><td>4</td><td>1</td><td>1</td><td>11</td><td>6</td><td>+5</td>
+        <td><span class="pts">13</span></td><td><span class="status-empate">EMPATE</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank-num rank-3">3</span></td>
+        <td><div class="team-country"><div class="country-dot">🇦🇷</div><div><div class="team-name">Segundo Año</div><div class="team-sub">Argentina</div></div></div></td>
+        <td>6</td><td>3</td><td>1</td><td>2</td><td>9</td><td>8</td><td>+1</td>
+        <td><span class="pts">10</span></td><td><span class="status-ganó">GANÓ</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank-num">4</span></td>
+        <td><div class="team-country"><div class="country-dot">🇨🇱</div><div><div class="team-name">Tercer Año</div><div class="team-sub">Chile</div></div></div></td>
+        <td>6</td><td>2</td><td>2</td><td>2</td><td>8</td><td>9</td><td>-1</td>
+        <td><span class="pts">8</span></td><td><span class="status-perdió">PERDIÓ</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank-num">5</span></td>
+        <td><div class="team-country"><div class="country-dot">🇺🇾</div><div><div class="team-name">Cuarto Año</div><div class="team-sub">Uruguay</div></div></div></td>
+        <td>6</td><td>1</td><td>0</td><td>5</td><td>4</td><td>18</td><td>-14</td>
+        <td><span class="pts">3</span></td><td><span class="status-perdió">PERDIÓ</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ====== CRONOGRAMA ====== -->
+<section id="cronograma">
+  <div class="section-tag">◆ Agenda</div>
+  <h2 class="section-title">Próximos Encuentros</h2>
+  <p class="section-desc">Calendario de contiendas programadas. Los resultados se actualizan en tiempo real al finalizar cada partido.</p>
+
+  <div class="encuentros-grid">
+    <div class="encuentro-card">
+      <div class="enc-sport">⚽ Fútbol Varones — Fase de Grupos</div>
+      <div class="enc-teams">
+        <div class="enc-team"><span class="enc-team-flag">🇧🇷</span><div class="enc-team-name">1er Año</div></div>
+        <div class="enc-vs">VS</div>
+        <div class="enc-team"><span class="enc-team-flag">🇫🇷</span><div class="enc-team-name">5to Año</div></div>
+      </div>
+      <div class="enc-info">
+        <div class="enc-date"><strong>Miércoles 30 Abr</strong>4:00 PM — Campo Principal</div>
+        <span class="enc-badge badge-próximo">Próximo</span>
+      </div>
+    </div>
+
+    <div class="encuentro-card">
+      <div class="enc-sport"> Básquet Varones — Semis</div>
+      <div class="enc-teams">
+        <div class="enc-team"><span class="enc-team-flag">🇦🇷</span><div class="enc-team-name">2do Año</div></div>
+        <div class="enc-vs">VS</div>
+        <div class="enc-team"><span class="enc-team-flag">🇨🇱</span><div class="enc-team-name">3er Año</div></div>
+      </div>
+      <div class="enc-info">
+        <div class="enc-date"><strong>Hoy — EN VIVO</strong>3:30 PM — Coliseo B</div>
+        <span class="enc-badge badge-live">● EN VIVO</span>
+      </div>
+    </div>
+
+    <div class="encuentro-card">
+      <div class="enc-sport"> Vóley Damas — Final</div>
+      <div class="enc-teams">
+        <div class="enc-team"><span class="enc-team-flag">🇧🇷</span><div class="enc-team-name">1er Año</div></div>
+        <div class="enc-vs">VS</div>
+        <div class="enc-team"><span class="enc-team-flag">🇺🇾</span><div class="enc-team-name">4to Año</div></div>
+      </div>
+      <div class="enc-info">
+        <div class="enc-date"><strong>Viernes 2 May</strong>5:00 PM — Pabellón A</div>
+        <span class="enc-badge badge-próximo">Próximo</span>
+      </div>
+    </div>
+
+    <div class="encuentro-card">
+      <div class="enc-sport"> Ping Pong Mixto — Cuartos</div>
+      <div class="enc-teams">
+        <div class="enc-team"><span class="enc-team-flag">🇨🇱</span><div class="enc-team-name">3er Año</div></div>
+        <div class="enc-vs">3 – 1</div>
+        <div class="enc-team"><span class="enc-team-flag">🇺🇾</span><div class="enc-team-name">4to Año</div></div>
+      </div>
+      <div class="enc-info">
+        <div class="enc-date"><strong>Ayer — 24 Abr</strong>2:00 PM — Sala Rec</div>
+        <span class="enc-badge badge-finalizado">Finalizado</span>
+      </div>
+    </div>
+
+    <div class="encuentro-card">
+      <div class="enc-sport"> Fútbol Varones — Semifinal</div>
+      <div class="enc-teams">
+        <div class="enc-team"><span class="enc-team-flag">🇦🇷</span><div class="enc-team-name">2do Año</div></div>
+        <div class="enc-vs">VS</div>
+        <div class="enc-team"><span class="enc-team-flag">🇺🇾</span><div class="enc-team-name">4to Año</div></div>
+      </div>
+      <div class="enc-info">
+        <div class="enc-date"><strong>Jueves 1 May</strong>4:30 PM — Campo Principal</div>
+        <span class="enc-badge badge-próximo">Próximo</span>
+      </div>
+    </div>
+
+    <div class="encuentro-card">
+      <div class="enc-sport"> Básquet Varones — Final</div>
+      <div class="enc-teams">
+        <div class="enc-team"><span class="enc-team-flag">🇧🇷</span><div class="enc-team-name">1er Año</div></div>
+        <div class="enc-vs">VS</div>
+        <div class="enc-team"><span class="enc-team-flag">🇫🇷</span><div class="enc-team-name">5to Año</div></div>
+      </div>
+      <div class="enc-info">
+        <div class="enc-date"><strong>Sábado 3 May</strong>6:00 PM — Coliseo Principal</div>
+        <span class="enc-badge badge-próximo">Próximo</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CONTACTO ====== -->
+<section id="contacto">
+  <div class="section-tag">◆ Contacto</div>
+  <h2 class="section-title">Comunícate con Nosotros</h2>
+
+  <div class="contacto-grid">
+    <div class="contacto-info">
+      <h3>¿Tienes alguna consulta?</h3>
+      <p>Nuestro equipo está disponible para atender tus dudas sobre el proceso de inscripción, reglamento de juegos o cualquier aspecto del evento.</p>
+      <div class="contacto-item">
+        <div class="c-icon"></div>
+        <div class="c-text"><h5>Correo</h5><p>olimpiadas@olympiaspe.com</p></div>
+      </div>
+      <div class="contacto-item">
+        <div class="c-icon"></div>
+        <div class="c-text"><h5>Teléfono</h5><p>+51 1 234 5678</p></div>
+      </div>
+      <div class="contacto-item">
+        <div class="c-icon"></div>
+        <div class="c-text"><h5>Sede Principal</h5><p>Av. Los Deportes 1200, Lima, Perú</p></div>
+      </div>
+      <div class="contacto-item">
+        <div class="c-icon"></div>
+        <div class="c-text"><h5>Horario de Atención</h5><p>Lunes a Viernes: 8:00 AM – 6:00 PM</p></div>
+      </div>
+    </div>
+
+    <div class="form-box">
+      <h3>Enviar Mensaje</h3>
+      <p>Escríbenos directamente y te respondemos en menos de 24 horas.</p>
+      <div class="form-group">
+        <label>Nombre Completo</label>
+        <input type="text" placeholder="Tu nombre">
+      </div>
+      <div class="form-group">
+        <label>Correo Electrónico</label>
+        <input type="email" placeholder="tu@correo.com">
+      </div>
+      <div class="form-group">
+        <label>Asunto</label>
+        <select>
+          <option>Información sobre inscripciones</option>
+          <option>Reglamento de deportes</option>
+          <option>Cronograma del evento</option>
+          <option>Otros</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Mensaje</label>
+        <textarea placeholder="Escribe tu consulta aquí…"></textarea>
+      </div>
+      <button class="form-submit" onclick="handleContact()">Enviar Mensaje →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">OLIMPIADAS <span>PERU</span></a>
+      <p>Plataforma de gestión de olimpiadas institucionales. Calidad, transparencia y competencia en cada evento.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="#deportes">Deportes</a></li>
+        <li><a href="#inscripcion">Inscripción</a></li>
+        <li><a href="#resultados">Resultados</a></li>
+        <li><a href="#cronograma">Cronograma</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Empresa</h4>
+      <ul>
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="#">Misión y Visión</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#">Reglamento</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Deportes</h4>
+      <ul>
+        <li><a href="#"> Fútbol Varones</a></li>
+        <li><a href="#"> Básquet Varones</a></li>
+        <li><a href="#"> Vóley Damas</a></li>
+        <li><a href="#"> Ping Pong Mixto</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Olimpiadas PERU — Todos los derechos reservados</span>
+    <span>Desarrollado para el curso de Taller Web · UTP</span>
+  </div>
+</footer>
+
+<!-- Script -->
+<script src="script.js"></script>
+</body>
+</html>
