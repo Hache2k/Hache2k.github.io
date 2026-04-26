@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Olimpiadas PERU</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rojo: #D91B1B;
+    --rojo-dark: #A01010;
+    --oro: #F5C518;
+    --blanco: #F7F5F0;
+    --gris-dark: #111111;
+    --gris-mid: #1E1E1E;
+    --gris-light: #2C2C2C;
+    --gris-border: #333;
+    --texto: #E8E4DB;
+    --texto-muted: #888;
+    --verde: #2ECC71;
+    --azul: #2980B9;
+    --naranja: #E67E22;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--gris-dark);
+    color: var(--texto);
+    overflow-x: hidden;
+  }
+
+  /* ====== NAV ====== */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(17,17,17,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gris-border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem; height: 64px;
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem; letter-spacing: 3px; color: var(--oro);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--rojo); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--texto-muted); text-decoration: none;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 1px;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--oro); }
+  .nav-cta {
+    background: var(--rojo); color: white;
+    padding: 0.45rem 1.2rem; border-radius: 4px;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 1px;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--rojo-dark); }
+
+  /* ====== HERO ====== */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+    padding: 100px 2.5rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(217,27,27,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 20% 80%, rgba(245,197,24,0.06) 0%, transparent 60%),
+      #111;
+  }
+  .hero-rings {
+    position: absolute; right: -60px; top: 50%; transform: translateY(-50%);
+    opacity: 0.06; z-index: 0;
+  }
+  .hero-rings svg { width: 600px; height: 600px; }
+  .hero-tag {
+    font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--rojo); font-weight: 600;
+    background: rgba(217,27,27,0.1); border: 1px solid rgba(217,27,27,0.3);
+    padding: 0.4rem 1rem; border-radius: 2px;
+    margin-bottom: 1.5rem; position: relative; z-index: 1;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 10vw, 8rem);
+    line-height: 0.9; letter-spacing: 2px;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.6s ease 0.1s both;
+  }
+  .hero-title span { color: var(--rojo); display: block; }
+  .hero-title em { color: var(--oro); font-style: normal; }
+  .hero-sub {
+    max-width: 540px; margin-top: 1.5rem;
+    font-size: 1rem; line-height: 1.7; color: var(--texto-muted);
+    position: relative; z-index: 1;
+    animation: fadeUp 0.6s ease 0.2s both;
+  }
+  .hero-actions {
+    display: flex; gap: 1rem; margin-top: 2.5rem;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.6s ease 0.3s both;
+  }
+  .btn-primary {
+    background: var(--rojo); color: white;
+    padding: 0.8rem 2rem; border-radius: 4px;
+    font-size: 0.9rem; font-weight: 600;
+    text-decoration: none; letter-spacing: 0.5px;
+    transition: background 0.2s, transform 0.15s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--rojo-dark); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--texto);
+    padding: 0.8rem 2rem; border-radius: 4px;
+    font-size: 0.9rem; font-weight: 500;
+    text-decoration: none; letter-spacing: 0.5px;
+    border: 1px solid var(--gris-border);
+    transition: border-color 0.2s, transform 0.15s; cursor: pointer;
+  }
+  .btn-outline:hover { border-color: var(--texto-muted); transform: translateY(-2px); }
+
+  /* Counters */
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    position: relative; z-index: 1;
+    padding-top: 2rem; border-top: 1px solid var(--gris-border);
+    animation: fadeUp 0.6s ease 0.4s both;
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem; color: var(--oro); letter-spacing: 2px;
+  }
+  .stat-label { font-size: 0.75rem; color: var(--texto-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+  /* ====== SECTION BASE ====== */
+  section { padding: 5rem 2.5rem; }
+  .section-tag {
+    font-size: 0.72rem; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--rojo); font-weight: 600; margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem); letter-spacing: 2px;
+    line-height: 1; margin-bottom: 1rem;
+  }
+  .section-desc { color: var(--texto-muted); max-width: 520px; line-height: 1.7; font-size: 0.95rem; }
+
+  /* ====== DEPORTES ====== */
+  #deportes { background: var(--gris-mid); }
+  .deportes-header { margin-bottom: 3rem; }
+  .deportes-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5px; background: var(--gris-border);
+    border: 1px solid var(--gris-border); border-radius: 8px; overflow: hidden;
+  }
+  .deporte-card {
+    background: var(--gris-mid); padding: 2.5rem 2rem;
+    position: relative; overflow: hidden;
+    transition: background 0.3s;
+    cursor: pointer;
+  }
+  .deporte-card:hover { background: var(--gris-light); }
+  .deporte-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%; background: var(--rojo);
+    transform: scaleY(0); transform-origin: bottom;
+    transition: transform 0.3s;
+  }
+  .deporte-card:hover::before { transform: scaleY(1); }
+  .deporte-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+  .deporte-name {
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem;
+    letter-spacing: 2px; margin-bottom: 0.4rem;
+  }
+  .deporte-cat {
+    font-size: 0.72rem; text-transform: uppercase; letter-spacing: 2px;
+    color: var(--oro); font-weight: 600;
+  }
+  .deporte-desc { font-size: 0.85rem; color: var(--texto-muted); margin-top: 0.8rem; line-height: 1.5; }
+  .deporte-badge {
+    display: inline-block; margin-top: 1rem;
+    font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px;
+    background: rgba(217,27,27,0.1); border: 1px solid rgba(217,27,27,0.3);
+    color: var(--rojo); padding: 0.3rem 0.7rem; border-radius: 2px;
+  }
+
+  /* ====== INSCRIPCION ====== */
+  #inscripcion { background: var(--gris-dark); }
+  .form-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 3rem; }
+  .form-box {
+    background: var(--gris-mid); border: 1px solid var(--gris-border);
+    border-radius: 8px; padding: 2.5rem;
+  }
+  .form-box h3 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
+    letter-spacing: 2px; margin-bottom: 0.4rem; color: var(--oro);
+  }
+  .form-box p { font-size: 0.85rem; color: var(--texto-muted); margin-bottom: 2rem; }
+  .form-group { margin-bottom: 1.4rem; }
+  .form-group label {
+    display: block; font-size: 0.75rem; text-transform: uppercase;
+    letter-spacing: 1.5px; color: var(--texto-muted); margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%; background: var(--gris-dark); border: 1px solid var(--gris-border);
+    color: var(--texto); padding: 0.75rem 1rem; border-radius: 4px;
+    font-family: 'Outfit', sans-serif; font-size: 0.9rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--rojo);
+    box-shadow: 0 0 0 3px rgba(217,27,27,0.1);
+  }
+  .form-group select option { background: var(--gris-mid); }
+  .form-group textarea { resize: vertical; min-height: 90px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .checkbox-group { display: flex; flex-direction: column; gap: 0.7rem; }
+  .checkbox-item { display: flex; align-items: center; gap: 0.7rem; cursor: pointer; }
+  .checkbox-item input[type="checkbox"] {
+    width: 18px; height: 18px; accent-color: var(--rojo); cursor: pointer;
+    border-radius: 2px; flex-shrink: 0;
+  }
+  .checkbox-item span { font-size: 0.9rem; color: var(--texto); }
+  .form-submit {
+    width: 100%; background: var(--rojo); color: white;
+    padding: 0.9rem; border: none; border-radius: 4px;
+    font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase; cursor: pointer;
+    transition: background 0.2s; margin-top: 0.5rem;
+  }
+  .form-submit:hover { background: var(--rojo-dark); }
+
+  /* Right info panel */
+  .info-steps { list-style: none; }
+  .info-step {
+    display: flex; gap: 1.2rem; padding: 1.5rem 0;
+    border-bottom: 1px solid var(--gris-border);
+  }
+  .info-step:last-child { border-bottom: none; }
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 2rem;
+    color: var(--rojo); line-height: 1; min-width: 40px;
+  }
+  .step-text h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.3rem; }
+  .step-text p { font-size: 0.82rem; color: var(--texto-muted); line-height: 1.5; }
+
+  /* ====== RESULTADOS / TABLA ====== */
+  #resultados { background: var(--gris-mid); }
+  .results-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+  .filter-tabs { display: flex; gap: 0.5rem; }
+  .tab {
+    padding: 0.5rem 1.2rem; border-radius: 4px; font-size: 0.8rem;
+    font-weight: 500; cursor: pointer; border: 1px solid var(--gris-border);
+    background: transparent; color: var(--texto-muted); transition: all 0.2s;
+    font-family: 'Outfit', sans-serif;
+  }
+  .tab.active, .tab:hover { background: var(--rojo); color: white; border-color: var(--rojo); }
+  table {
+    width: 100%; border-collapse: collapse;
+    background: var(--gris-dark); border-radius: 8px; overflow: hidden;
+    border: 1px solid var(--gris-border);
+  }
+  thead { background: var(--gris-light); }
+  th {
+    padding: 1rem 1.2rem; text-align: left;
+    font-size: 0.72rem; text-transform: uppercase; letter-spacing: 2px;
+    color: var(--texto-muted); font-weight: 600;
+  }
+  td { padding: 1rem 1.2rem; font-size: 0.88rem; border-bottom: 1px solid var(--gris-border); }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  .rank-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--texto-muted); }
+  .rank-1 { color: var(--oro); }
+  .rank-2 { color: #C0C0C0; }
+  .rank-3 { color: #CD7F32; }
+  .team-country {
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .country-flag { width: 28px; height: 20px; border-radius: 2px; object-fit: cover; }
+  .country-dot {
+    width: 28px; height: 20px; border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .team-name { font-weight: 600; font-size: 0.9rem; }
+  .team-sub { font-size: 0.75rem; color: var(--texto-muted); }
+  .pts { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; color: var(--oro); }
+  .status-ganó { color: var(--verde); font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; }
+  .status-perdió { color: var(--rojo); font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; }
+  .status-empate { color: var(--texto-muted); font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; }
+
+  /* ====== PRÓXIMOS ENCUENTROS ====== */
+  #cronograma { background: var(--gris-dark); }
+  .encuentros-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; margin-top: 2.5rem; }
+  .encuentro-card {
+    background: var(--gris-mid); border: 1px solid var(--gris-border);
+    border-radius: 8px; padding: 1.5rem; position: relative; overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .encuentro-card:hover { transform: translateY(-3px); border-color: var(--rojo); }
+  .enc-sport {
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px;
+    color: var(--rojo); font-weight: 600; margin-bottom: 1rem;
+  }
+  .enc-teams { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; }
+  .enc-team { text-align: center; }
+  .enc-team-flag { font-size: 1.8rem; display: block; margin-bottom: 0.3rem; }
+  .enc-team-name { font-size: 0.8rem; font-weight: 600; }
+  .enc-vs { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--texto-muted); }
+  .enc-info {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 1rem; border-top: 1px solid var(--gris-border);
+  }
+  .enc-date { font-size: 0.78rem; color: var(--texto-muted); }
+  .enc-date strong { display: block; color: var(--texto); font-size: 0.88rem; }
+  .enc-badge {
+    font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px;
+    font-weight: 600; padding: 0.3rem 0.7rem; border-radius: 2px;
+  }
+  .badge-live { background: rgba(217,27,27,0.15); color: var(--rojo); border: 1px solid rgba(217,27,27,0.3); }
+  .badge-próximo { background: rgba(245,197,24,0.1); color: var(--oro); border: 1px solid rgba(245,197,24,0.25); }
+  .badge-finalizado { background: rgba(255,255,255,0.05); color: var(--texto-muted); border: 1px solid var(--gris-border); }
+
+  /* ====== CONTACTO ====== */
+  #contacto { background: var(--gris-mid); }
+  .contacto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem; }
+  .contacto-info h3 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem;
+    letter-spacing: 2px; margin-bottom: 1rem;
+  }
+  .contacto-info p { font-size: 0.9rem; color: var(--texto-muted); line-height: 1.7; margin-bottom: 2rem; }
+  .contacto-item { display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: flex-start; }
+  .c-icon {
+    width: 40px; height: 40px; background: rgba(217,27,27,0.1);
+    border: 1px solid rgba(217,27,27,0.25); border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .c-text h5 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--texto-muted); margin-bottom: 0.2rem; }
+  .c-text p { font-size: 0.9rem; color: var(--texto); margin: 0; }
+
+  /* ====== FOOTER ====== */
+  footer {
+    background: #0A0A0A; padding: 3rem 2.5rem 2rem;
+    border-top: 1px solid var(--gris-border);
+  }
+  .footer-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap; padding-bottom: 2rem; border-bottom: 1px solid var(--gris-border); margin-bottom: 1.5rem; }
+  .footer-brand .nav-logo { display: block; margin-bottom: 0.5rem; }
+  .footer-brand p { font-size: 0.82rem; color: var(--texto-muted); max-width: 260px; line-height: 1.6; }
+  .footer-links h4 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 2px; color: var(--texto-muted); margin-bottom: 1rem; }
+  .footer-links ul { list-style: none; }
+  .footer-links li { margin-bottom: 0.5rem; }
+  .footer-links a { color: var(--texto-muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--texto); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--texto-muted); }
+
+  /* ====== ANIMATIONS ====== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ====== RESPONSIVE ====== */
+  @media (max-width: 768px) {
+    nav { padding: 0 1.2rem; }
+    .nav-links { display: none; }
+    section { padding: 3.5rem 1.2rem; }
+    .hero { padding: 100px 1.2rem 3rem; }
+    .form-layout, .contacto-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero-stats { gap: 2rem; }
+    .footer-top { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">OLIMPIADAS <span>PERU</span></a>
+  <ul class="nav-links">
+    <li><a href="#deportes">Deportes</a></li>
+    <li><a href="#inscripcion">Inscripción</a></li>
+    <li><a href="#resultados">Resultados</a></li>
+    <li><a href="#cronograma">Cronograma</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="#inscripcion" class="nav-cta">Inscribirse</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-rings" aria-hidden="true">
+    <svg viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="300" cy="300" r="280" stroke="white" stroke-width="1"/>
+      <circle cx="300" cy="300" r="200" stroke="white" stroke-width="1"/>
+      <circle cx="300" cy="300" r="120" stroke="white" stroke-width="1"/>
+      <circle cx="300" cy="300" r="50" stroke="white" stroke-width="1"/>
+      <!-- Olimpic rings simplified -->
+      <circle cx="200" cy="340" r="60" stroke="white" stroke-width="2"/>
+      <circle cx="280" cy="340" r="60" stroke="white" stroke-width="2"/>
+      <circle cx="360" cy="340" r="60" stroke="white" stroke-width="2"/>
+    </svg>
+  </div>
+
+  <div class="hero-tag">🏆 Plataforma Oficial de Gestión</div>
+  <h1 class="hero-title">
+    Olimpiadas<span>PERU</span><em>2025</em>
+  </h1>
+  <p class="hero-sub">
+    Sistema integral para la gestión de olimpiadas institucionales. Registra equipos, organiza sorteos, programa encuentros y lleva el control estadístico de todos los deportes en tiempo real.
+  </p>
+  <div class="hero-actions">
+    <a href="#inscripcion" class="btn-primary">Inscribir Institución</a>
+    <a href="#resultados" class="btn-outline">Ver Resultados</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">12+</div>
+      <div class="stat-label">Instituciones</div>
+    </div>
+    <div>
+      <div class="stat-num">4</div>
+      <div class="stat-label">Deportes</div>
+    </div>
+    <div>
+      <div class="stat-num">48+</div>
+      <div class="stat-label">Equipos</div>
+    </div>
+    <div>
+      <div class="stat-num">200+</div>
+      <div class="stat-label">Participantes</div>
+    </div>
+  </div>
+</header>
+
+<!-- DEPORTES -->
+<section id="deportes">
+  <div class="deportes-header">
+    <div class="section-tag">◆ Disciplinas</div>
+    <h2 class="section-title">Deportes Oficiales</h2>
+    <p class="section-desc">Cuatro disciplinas obligatorias que conforman las Olimpiadas PERU. Cada institución puede inscribir equipos en uno o más deportes.</p>
+  </div>
+  <div class="deportes-grid">
+    <div class="deporte-card">
+      <span class="deporte-icon">⚽</span>
+      <div class="deporte-name">Fútbol</div>
+      <div class="deporte-cat">Varones</div>
+      <p class="deporte-desc">11 jugadores por equipo. Sistema de series con sorteo aleatorio, fase de grupos y eliminatorias directas.</p>
+      <span class="deporte-badge">Obligatorio</span>
+    </div>
+    <div class="deporte-card">
+      <span class="deporte-icon">🏀</span>
+      <div class="deporte-name">Básquet</div>
+      <div class="deporte-cat">Varones</div>
+      <p class="deporte-desc">5 jugadores titulares. Se lleva control de encestadores, asistencias y estadísticas por partido.</p>
+      <span class="deporte-badge">Obligatorio</span>
+    </div>
+    <div class="deporte-card">
+      <span class="deporte-icon">🏐</span>
+      <div class="deporte-name">Vóley</div>
+      <div class="deporte-cat">Damas</div>
+      <p class="deporte-desc">6 jugadoras por equipo. Control de sets ganados, puntos y rotaciones durante la competencia.</p>
+      <span class="deporte-badge">Obligatorio</span>
+    </div>
+    <div class="deporte-card">
+      <span class="deporte-icon">🏓</span>
+      <div class="deporte-name">Ping Pong</div>
+      <div class="deporte-cat">Mixto</div>
+      <p class="deporte-desc">Modalidad mixta individual y por parejas. Bracket eliminatorio con registro de puntuación por set.</p>
+      <span class="deporte-badge">Obligatorio</span>
+    </div>
+  </div>
+</section>
+
+<!-- INSCRIPCION -->
+<section id="inscripcion">
+  <div class="section-tag">◆ Registro</div>
+  <h2 class="section-title">Inscripción de Equipos</h2>
+  <p class="section-desc">Registra tu institución y selecciona los deportes en los que participarás. El proceso es rápido y sencillo.</p>
+
+  <div class="form-layout">
+    <!-- Formulario -->
+    <div class="form-box">
+      <h3>Datos del Equipo</h3>
+      <p>Complete el formulario para registrar su institución en las olimpiadas.</p>
+
+      <div class="form-group">
+        <label>Nombre de la Institución *</label>
+        <input type="text" placeholder="Ej. Universidad Nacional Mayor de San Marcos">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Año / Categoría *</label>
+          <select>
+            <option value="">Seleccionar…</option>
+            <option>Primer Año — 🇧🇷 Brasil</option>
+            <option>Segundo Año — 🇦🇷 Argentina</option>
+            <option>Tercer Año — 🇨🇱 Chile</option>
+            <option>Cuarto Año — 🇺🇾 Uruguay</option>
+            <option>Quinto Año — 🇫🇷 Francia</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Número de Participantes *</label>
+          <input type="number" placeholder="Ej. 25" min="1">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Nombre del Representante *</label>
+        <input type="text" placeholder="Nombre completo">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Correo Electrónico *</label>
+          <input type="email" placeholder="correo@institución.edu.pe">
+        </div>
+        <div class="form-group">
+          <label>Teléfono de Contacto</label>
+          <input type="tel" placeholder="+51 9XX XXX XXX">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Deportes a Inscribir *</label>
+        <div class="checkbox-group">
+          <label class="checkbox-item">
+            <input type="checkbox" checked>
+            <span>⚽ Fútbol Varones</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox">
+            <span>🏀 Básquet Varones</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox">
+            <span>🏐 Vóley Damas</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox">
+            <span>🏓 Ping Pong Mixto</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Observaciones adicionales</label>
+        <textarea placeholder="Información adicional, condiciones especiales, etc."></textarea>
+      </div>
+
+      <button class="form-submit" onclick="handleSubmit()">Enviar Inscripción →</button>
+    </div>
+
+    <!-- Pasos -->
+    <div>
+      <ul class="info-steps">
+        <li class="info-step">
+          <div class="step-num">01</div>
+          <div class="step-text">
+            <h4>Registro de la Institución</h4>
+            <p>Completa los datos de tu institución y el representante responsable del equipo.</p>
+          </div>
+        </li>
+        <li class="info-step">
+          <div class="step-num">02</div>
+          <div class="step-text">
+            <h4>Selección de Deportes</h4>
+            <p>Elige los deportes en los que participará tu equipo. Puedes inscribirte en uno o más.</p>
+          </div>
+        </li>
+        <li class="info-step">
+          <div class="step-num">03</div>
+          <div class="step-text">
+            <h4>Sorteo de Series</h4>
+            <p>Una vez cerradas las inscripciones, se realiza el sorteo aleatorio para definir los grupos por deporte.</p>
+          </div>
+        </li>
+        <li class="info-step">
+          <div class="step-num">04</div>
+          <div class="step-text">
+            <h4>Programación de Encuentros</h4>
+            <p>Se asigna fecha, hora y lugar para cada contienda según el calendario oficial del evento.</p>
+          </div>
+        </li>
+        <li class="info-step">
+          <div class="step-num">05</div>
+          <div class="step-text">
+            <h4>Seguimiento y Estadísticas</h4>
+            <p>Accede en tiempo real a los resultados, tabla de posiciones, goleadores y estadísticas del torneo.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTADOS -->
+<section id="resultados">
+  <div class="results-header">
+    <div>
+      <div class="section-tag">◆ Tabla de posiciones</div>
+      <h2 class="section-title">Resultados</h2>
+    </div>
+    <div class="filter-tabs">
+      <button class="tab active" onclick="filterTab(this)">⚽ Fútbol</button>
+      <button class="tab" onclick="filterTab(this)">🏀 Básquet</button>
+      <button class="tab" onclick="filterTab(this)">🏐 Vóley</button>
+      <button class="tab" onclick="filterTab(this)">🏓 Ping Pong</button>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Equipo / País</th>
+        <th>PJ</th>
+        <th>PG</th>
+        <th>PE</th>
+        <th>PP</th>
+        <th>GF</th>
+        <th>GC</th>
+        <th>DIF</th>
+        <th>PTS</th>
+        <th>Último</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="rank-num rank-1">1</span></td>
+        <td><div class="team-country"><div class="country-dot">🇧🇷</div><div><div class="team-name">Primer Año</div><div class="team-sub">Brasil</div></div></div></td>
+        <td>6</td><td>5</td><td>0</td><td>1</td><td>14</td><td>5</td><td>+9</td>
+        <td><span class="pts">15</span></td>
+        <td><span class="status-ganó">GANÓ</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank-num rank-2">2</span></td>
+        <td><div class="team-country"><div class="country-dot">🇫🇷</div><div><div class="team-name">Quinto Año</div><div class="team-sub">Francia</div></div></div></td>
+        <td>6</td><td>4</td><td>1</td><td>1</td><td>11</td><td>6</td><td>+5</td>
+        <td><span class="pts">13</span></td>
+        <td><span class="status-empate">EMPATE</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank-num rank-3">3</span></td>
+        <td><div class="team-country"><div class="country-dot">🇦🇷</div><div><div class="team-name">Segundo Año</div><div class="team-sub">Argentina</div></div></div></td>
+        <td>6</td><td>3</td><td>1</td><td>2</td><td>9</td><td>8</td><td>+1</td>
+        <td><span class="pts">10</span></td>
+        <td><span class="status-ganó">GANÓ</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank-num">4</span></td>
+        <td><div class="team-country"><div class="country-dot">🇨🇱</div><div><div class="team-name">Tercer Año</div><div class="team-sub">Chile</div></div></div></td>
+        <td>6</td><td>2</td><td>2</td><td>2</td><td>8</td><td>9</td><td>-1</td>
+        <td><span class="pts">8</span></td>
+        <td><span class="status-perdió">PERDIÓ</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank-num">5</span></td>
+        <td><div class="team-country"><div class="country-dot">🇺🇾</div><div><div class="team-name">Cuarto Año</div><div class="team-sub">Uruguay</div></div></div></td>
+        <td>6</td><td>1</td><td>0</td><td>5</td><td>4</td><td>18</td><td>-14</td>
+        <td><span class="pts">3</span></td>
+        <td><span class="status-perdió">PERDIÓ</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- CRONOGRAMA -->
+<section id="cronograma">
+  <div class="section-tag">◆ Agenda</div>
+  <h2 class="section-title">Próximos Encuentros</h2>
+  <p class="section-desc">Calendario de contiendas programadas. Los resultados se actualizan en tiempo real al finalizar cada partido.</p>
+
+  <div class="encuentros-grid">
+    <div class="encuentro-card">
+      <div class="enc-sport">⚽ Fútbol Varones — Fase de Grupos</div>
+      <div class="enc-teams">
+        <div class="enc-team">
+          <span class="enc-team-flag">🇧🇷</span>
+          <div class="enc-team-name">1er Año</div>
+        </div>
+        <div class="enc-vs">VS</div>
+        <div class="enc-team">
+          <span class="enc-team-flag">🇫🇷</span>
+          <div class="enc-team-name">5to Año</div>
+        </div>
+      </div>
+      <div class="enc-info">
+        <div class="enc-date">
+          <strong>Miércoles 30 Abr</strong>
+          4:00 PM — Campo Principal
+        </div>
+        <span class="enc-badge badge-próximo">Próximo</span>
+      </div>
+    </div>
+
+    <div class="encuentro-card">
+      <div class="enc-sport">🏀 Básquet Varones — Semis</div>
+      <div class="enc-teams">
+        <div class="enc-team">
+          <span class="enc-team-flag">🇦🇷</span>
+          <div class="enc-team-name">2do Año</div>
+        </div>
+        <div class="enc-vs">VS</div>
+        <div class="enc-team">
+          <span class="enc-team-flag">🇨🇱</span>
+          <div class="enc-team-name">3er Año</div>
+        </div>
+      </div>
+      <div class="enc-info">
+        <div class="enc-date">
+          <strong>Hoy — EN VIVO</strong>
+          3:30 PM — Coliseo B
+        </div>
+        <span class="enc-badge badge-live">● EN VIVO</span>
+      </div>
+    </div>
+
+    <div class="encuentro-card">
+      <div class="enc-sport">🏐 Vóley Damas — Final</div>
+      <div class="enc-teams">
+        <div class="enc-team">
+          <span class="enc-team-flag">🇧🇷</span>
+          <div class="enc-team-name">1er Año</div>
+        </div>
+        <div class="enc-vs">VS</div>
+        <div class="enc-team">
+          <span class="enc-team-flag">🇺🇾</span>
+          <div class="enc-team-name">4to Año</div>
+        </div>
+      </div>
+      <div class="enc-info">
+        <div class="enc-date">
+          <strong>Viernes 2 May</strong>
+          5:00 PM — Pabellón A
+        </div>
+        <span class="enc-badge badge-próximo">Próximo</span>
+      </div>
+    </div>
+
+    <div class="encuentro-card">
+      <div class="enc-sport">🏓 Ping Pong Mixto — Cuartos</div>
+      <div class="enc-teams">
+        <div class="enc-team">
+          <span class="enc-team-flag">🇨🇱</span>
+          <div class="enc-team-name">3er Año</div>
+        </div>
+        <div class="enc-vs">3 – 1</div>
+        <div class="enc-team">
+          <span class="enc-team-flag">🇺🇾</span>
+          <div class="enc-team-name">4to Año</div>
+        </div>
+      </div>
+      <div class="enc-info">
+        <div class="enc-date">
+          <strong>Ayer — 24 Abr</strong>
+          2:00 PM — Sala Rec
+        </div>
+        <span class="enc-badge badge-finalizado">Finalizado</span>
+      </div>
+    </div>
+
+    <div class="encuentro-card">
+      <div class="enc-sport">⚽ Fútbol Varones — Semifinal</div>
+      <div class="enc-teams">
+        <div class="enc-team">
+          <span class="enc-team-flag">🇦🇷</span>
+          <div class="enc-team-name">2do Año</div>
+        </div>
+        <div class="enc-vs">VS</div>
+        <div class="enc-team">
+          <span class="enc-team-flag">🇺🇾</span>
+          <div class="enc-team-name">4to Año</div>
+        </div>
+      </div>
+      <div class="enc-info">
+        <div class="enc-date">
+          <strong>Jueves 1 May</strong>
+          4:30 PM — Campo Principal
+        </div>
+        <span class="enc-badge badge-próximo">Próximo</span>
+      </div>
+    </div>
+
+    <div class="encuentro-card">
+      <div class="enc-sport">🏀 Básquet Varones — Final</div>
+      <div class="enc-teams">
+        <div class="enc-team">
+          <span class="enc-team-flag">🇧🇷</span>
+          <div class="enc-team-name">1er Año</div>
+        </div>
+        <div class="enc-vs">VS</div>
+        <div class="enc-team">
+          <span class="enc-team-flag">🇫🇷</span>
+          <div class="enc-team-name">5to Año</div>
+        </div>
+      </div>
+      <div class="enc-info">
+        <div class="enc-date">
+          <strong>Sábado 3 May</strong>
+          6:00 PM — Coliseo Principal
+        </div>
+        <span class="enc-badge badge-próximo">Próximo</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="section-tag">◆ Contacto</div>
+  <h2 class="section-title">Comunícate con Nosotros</h2>
+
+  <div class="contacto-grid">
+    <div class="contacto-info">
+      <h3>¿Tienes alguna consulta?</h3>
+      <p>Nuestro equipo está disponible para atender tus dudas sobre el proceso de inscripción, reglamento de juegos o cualquier aspecto del evento.</p>
+      <div class="contacto-item">
+        <div class="c-icon">📧</div>
+        <div class="c-text">
+          <h5>Correo</h5>
+          <p>olimpiadas@olympiaspe.com</p>
+        </div>
+      </div>
+      <div class="contacto-item">
+        <div class="c-icon">📞</div>
+        <div class="c-text">
+          <h5>Teléfono</h5>
+          <p>+51 1 234 5678</p>
+        </div>
+      </div>
+      <div class="contacto-item">
+        <div class="c-icon">📍</div>
+        <div class="c-text">
+          <h5>Sede Principal</h5>
+          <p>Av. Los Deportes 1200, Lima, Perú</p>
+        </div>
+      </div>
+      <div class="contacto-item">
+        <div class="c-icon">🕐</div>
+        <div class="c-text">
+          <h5>Horario de Atención</h5>
+          <p>Lunes a Viernes: 8:00 AM – 6:00 PM</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-box">
+      <h3>Enviar Mensaje</h3>
+      <p>Escríbenos directamente y te respondemos en menos de 24 horas.</p>
+      <div class="form-group">
+        <label>Nombre Completo</label>
+        <input type="text" placeholder="Tu nombre">
+      </div>
+      <div class="form-group">
+        <label>Correo Electrónico</label>
+        <input type="email" placeholder="tu@correo.com">
+      </div>
+      <div class="form-group">
+        <label>Asunto</label>
+        <select>
+          <option>Información sobre inscripciones</option>
+          <option>Reglamento de deportes</option>
+          <option>Cronograma del evento</option>
+          <option>Otros</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Mensaje</label>
+        <textarea placeholder="Escribe tu consulta aquí…"></textarea>
+      </div>
+      <button class="form-submit" onclick="handleContact()">Enviar Mensaje →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">OLIMPIADAS <span>PERU</span></a>
+      <p>Plataforma de gestión de olimpiadas institucionales. Calidad, transparencia y competencia en cada evento.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="#deportes">Deportes</a></li>
+        <li><a href="#inscripcion">Inscripción</a></li>
+        <li><a href="#resultados">Resultados</a></li>
+        <li><a href="#cronograma">Cronograma</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Empresa</h4>
+      <ul>
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="#">Misión y Visión</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#">Reglamento</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Deportes</h4>
+      <ul>
+        <li><a href="#">⚽ Fútbol Varones</a></li>
+        <li><a href="#">🏀 Básquet Varones</a></li>
+        <li><a href="#">🏐 Vóley Damas</a></li>
+        <li><a href="#">🏓 Ping Pong Mixto</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Olimpiadas PERU — Todos los derechos reservados</span>
+    <span>Desarrollado para el curso de Taller Web · UTP</span>
+  </div>
+</footer>
+
+<script>
+  // Tab filter
+  function filterTab(el) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // Form submit feedback
+  function handleSubmit() {
+    alert('✅ Inscripción enviada correctamente.\nNos comunicaremos contigo en breve para confirmar el registro.');
+  }
+  function handleContact() {
+    alert('✅ Mensaje enviado.\nTe responderemos en menos de 24 horas.');
+  }
+
+  // Scroll animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.deporte-card, .encuentro-card, .form-box, .info-step').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
